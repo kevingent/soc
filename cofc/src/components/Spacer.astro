@@ -1,0 +1,25 @@
+---
+
+interface Props {
+	size: string;
+}
+
+const { size } = Astro.props;
+
+---
+
+<div class={`section-space ${size}`}></div>
+
+<style>
+
+	.section-space {
+		width: 100%;
+		background-color: transparent;
+		&.sm { height: 4.5rem; }
+		&.base { height: 5.5rem; }
+		&.lg { height: 6.5rem; }
+		&.x-lg { height: clamp(7rem, calc(6.25rem + 3.75vw), 10rem); }
+		&.xx-lg { height: clamp(11rem, calc(9.75rem + 6.25vw), 16rem); }
+	}
+
+</style>

@@ -1,0 +1,55 @@
+---
+
+import '../styles/tailwind.css';
+import '../styles/colors.css';
+import '../styles/typography.scss';
+import '../styles/global.scss';
+
+import Head from '../components/Head.astro';
+
+interface Props {
+	title?: string;
+}
+
+const { title } = Astro.props;
+
+---
+
+<!doctype html>
+<html lang="en">
+
+  <Head title={title} />
+
+  <body>
+
+    <slot />
+
+    <script>
+		  import Lenis from 'lenis';
+
+		  const initLenis = () => {
+		    const lenis = new Lenis({
+		      autoRaf: true, // Automatically handles the animation loop
+		    });
+		  };
+
+		  // Re-run on every page load if using View Transitions
+		  // document.addEventListener('astro:page-load', initLenis);
+
+		  // Initial load
+		  initLenis();
+		</script>
+
+    <script>
+  		import { gsap } from "gsap";
+  		import { ScrollTrigger } from "gsap/ScrollTrigger";
+  		import { initScrollAnimations } from "../scripts/scroll-animate.js";
+
+  		gsap.registerPlugin(ScrollTrigger);
+      
+  		initScrollAnimations();
+  	</script>
+    
+  </body>
+
+</html>

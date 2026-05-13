@@ -7,18 +7,10 @@
 
 // Lenis
 html.lenis,
-html.lenis body {
-  height: auto;
-}
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
+html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
 
 body {
   background-color: var(--bg-base);
@@ -49,70 +41,4 @@ section {
 }
 .u-container-edge {
   width: 100%;
-}
-
-.edge {
-  position: absolute;
-  height: 4px;
-  width: 4px;
-  transition: all 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
-  &.lg {
-    height: 8px;
-    width: 8px;
-  }
-  &.edge-tl {
-    top: 0;
-    left: 0;
-  }
-  &.edge-tr {
-    top: 0;
-    right: 0;
-    transform: rotate(90deg);
-  }
-  &.edge-bl {
-    bottom: 0;
-    left: 0;
-    transform: rotate(270deg);
-  }
-  &.edge-br {
-    bottom: 0;
-    right: 0;
-    transform: rotate(180deg);
-  }
-  path {
-    transition: all 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
-  }
-}
-
-.pre-header {
-  color: var(--brand-primary);
-  text-transform: uppercase;
-  font-weight: 700;
-  &.red {
-    color: var(--utility-error);
-  }
-}
-.post-header {
-  color: var(--text-tertiary);
-}
-
-.info-block {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3rem;
-  .purist-symbol {
-    max-width: 151px;
-  }
-  .pre-header {
-    letter-spacing: 0.5rem;
-    &.red {
-      color: var(--utility-error);
-    }
-  }
-  .post-header {
-    max-width: 64rem;
-    margin-bottom: 1rem;
-  }
 }
