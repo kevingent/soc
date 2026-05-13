@@ -1,0 +1,123 @@
+/* Colors */
+
+[data-mode="light"],
+:root {
+  /* Transparency */
+  --transparency-t-dark-0: rgba(0, 0, 0, 0);
+  --transparency-t-dark-4: rgba(0, 0, 0, 0.04);
+  --transparency-t-dark-12: rgba(0, 0, 0, 0.12);
+  --transparency-t-dark-24: rgba(0, 0, 0, 0.24);
+  --transparency-t-dark-40: rgba(0, 0, 0, 0.4);
+  --transparency-t-dark-56: rgba(0, 0, 0, 0.56);
+  --transparency-t-dark-72: rgba(0, 0, 0, 0.72);
+
+  --transparency-t-light-0: rgba(250, 250, 250, 0);
+  --transparency-t-light-4: rgba(250, 250, 250, 0.04);
+  --transparency-t-light-12: rgba(250, 250, 250, 0.12);
+  --transparency-t-light-24: rgba(250, 250, 250, 0.24);
+  --transparency-t-light-40: rgba(250, 250, 250, 0.4);
+  --transparency-t-light-56: rgba(250, 250, 250, 0.56);
+
+  --transparency-overlay: rgba(0, 0, 0, 0.4);
+  --transparency-overlay-darker: rgba(0, 0, 0, 0.72);
+
+  /* Absolute */
+  --absolute-white: rgba(255, 255, 255, 1);
+  --absolute-black: rgba(0, 0, 0, 1);
+
+  /* Theme - Light */
+  --bg-base: var(--color-zinc-100);
+  --bg-card: var(--absolute-white);
+  --bg-absolute: var(--color-zinc-400);
+
+  --text-base: var(--color-zinc-950);
+  --text-secondary: var(--color-zinc-700);
+  --text-tertiary: var(--color-zinc-500);
+
+  --brand-primary: var(--color-emerald-500);
+  --brand-secondary: var(--color-emerald-600);
+
+  --transparency-t-transparent: var(--transparency-t-dark-0);
+  --transparency-t-light: var(--transparency-t-dark-4);
+  --transparency-t-default: var(--transparency-t-dark-12);
+  --transparency-t-dark: var(--transparency-t-dark-24);
+  --transparency-t-darker: var(--transparency-t-dark-40);
+
+  --utility-error-bright: var(--color-red-400);
+  --utility-error: var(--color-red-500);
+  --utility-error-dark: var(--color-red-700);
+  --utility-error-dim: rgba(255, 45, 45, 0.12);
+  --utility-error-dim-dark: rgba(206, 7, 7, 0.12);
+  --utility-success-bright: var(--color-emerald-400);
+  --utility-success: var(--color-emerald-600);
+  --utility-success-dark: var(--color-emerald-700);
+  --utility-success-dim: rgba(6, 199, 152, 0.04);
+  --utility-success-dim-dark: rgba(0, 127, 102, 0.08);
+  --utility-warning: var(--color-yellow-500);
+  --utility-warning-dark: var(--color-yellow-600);
+  --utility-warning-dim: rgba(255, 166, 0, 0.12);
+  --utility-warning-dim-dark: rgba(226, 126, 0, 0.24);
+  --utility-overlay: var(--transparency-t-dark-40);
+  --utility-overlay-darker: var(--transparency-t-dark-72);
+
+  --button-dark-bg: var(--text-base);
+  --button-dark-hover: var(--text-base);
+  --button-dark-text: var(--bg-base);
+
+  --button-light-bg: var(--transparency-t-light);
+  --button-light-hover: var(--transparency-t-default);
+  --button-light-text: var(--text-base);
+
+  --button-brand-bg: var(--brand-primary);
+  --button-brand-hover: var(--brand-secondary);
+  --button-brand-text: var(--text-base);
+}
+
+/* Theme - Dark */
+[data-mode="dark"] {
+  --bg-base: var(--color-zinc-975);
+  --bg-card: rgba(6, 6, 6, 1);
+  --bg-absolute: var(--color-zinc-400);
+
+  --text-base: var(--color-zinc-100);
+  --text-secondary: var(--color-zinc-300);
+  --text-tertiary: var(--color-zinc-500);
+
+  --brand-primary: var(--color-emerald-500);
+  --brand-secondary: var(--color-emerald-600);
+
+  --transparency-t-transparent: var(--transparency-t-light-0);
+  --transparency-t-light: var(--transparency-t-light-4);
+  --transparency-t-default: var(--transparency-t-light-12);
+  --transparency-t-dark: var(--transparency-t-light-24);
+  --transparency-t-darker: var(--transparency-t-light-40);
+
+  --utility-error-bright: var(--color-red-400);
+  --utility-error: var(--color-red-500);
+  --utility-error-dark: var(--color-red-700);
+  --utility-error-dim: rgba(255, 45, 45, 0.12);
+  --utility-error-dim-dark: rgba(206, 7, 7, 0.12);
+  --utility-success-bright: var(--color-emerald-400);
+  --utility-success: var(--color-emerald-500);
+  --utility-success-dark: var(--color-emerald-700);
+  --utility-success-dim: rgba(6, 199, 152, 0.04);
+  --utility-success-dim-dark: rgba(0, 127, 102, 0.08);
+  --utility-warning: var(--color-yellow-500);
+  --utility-warning-dark: var(--color-yellow-600);
+  --utility-warning-dim: rgba(255, 166, 0, 0.12);
+  --utility-warning-dim-dark: rgba(226, 126, 0, 0.24);
+  --utility-overlay: var(--transparency-t-dark-40);
+  --utility-overlay-darker: var(--transparency-t-dark-72);
+
+  --button-dark-bg: var(--text-base);
+  --button-dark-hover: var(--text-base);
+  --button-dark-text: var(--bg-base);
+
+  --button-light-bg: var(--transparency-t-light);
+  --button-light-hover: var(--transparency-t-default);
+  --button-light-text: var(--text-base);
+
+  --button-brand-bg: var(--brand-primary);
+  --button-brand-hover: var(--brand-secondary);
+  --button-brand-text: var(--bg-base);
+}

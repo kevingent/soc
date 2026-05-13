@@ -1,0 +1,279 @@
+// Typography and Fluid Fonts
+// We use modern CSS clamp() for fully responsive fluid typography that never breaks bounds.
+
+:root {
+  --font-body: "Rajdhani", sans-serif;
+
+  /* text-9xl isn't assigned to an element. */
+  --text-9xl: clamp(4rem, 6.957vw + 2.435rem, 8rem);
+  --text-9xl--line-height: clamp(3.75rem, 6.522vw + 2.283rem, 7.5rem);
+  --text-9xl--letter-spacing: calc(
+    clamp(0.156rem, 0.163vw + 0.12rem, 0.25rem) * -1
+  );
+  --text-9xl--font-weight: 900;
+
+  /* display */
+  --text-8xl: clamp(3.5rem, 4.348vw + 2.522rem, 6rem);
+  --text-8xl--line-height: clamp(3.625rem, 3.696vw + 2.793rem, 5.75rem);
+  --text-8xl--letter-spacing: calc(
+    clamp(0.156rem, 0.163vw + 0.12rem, 0.25rem) * -1
+  );
+  --text-8xl--font-weight: 900;
+
+  /* h1 */
+  --text-7xl: clamp(2.5rem, 3.478vw + 1.717rem, 4.5rem);
+  --text-7xl--line-height: clamp(2.75rem, 3.478vw + 1.967rem, 4.75rem);
+  --text-7xl--letter-spacing: calc(
+    clamp(0.109rem, 0.136vw + 0.079rem, 0.188rem) * -1
+  );
+  --text-7xl--font-weight: 600;
+
+  /* h2 */
+  --text-6xl: clamp(2.25rem, 2.609vw + 1.663rem, 3.75rem);
+  --text-6xl--line-height: clamp(2.5rem, 2.609vw + 1.913rem, 4rem);
+  --text-6xl--letter-spacing: calc(
+    clamp(0.078rem, 0.136vw + 0.048rem, 0.156rem) * -1
+  );
+  --text-6xl--font-weight: 600;
+
+  /* h3 */
+  --text-5xl: clamp(2rem, 1.739vw + 1.609rem, 3rem);
+  --text-5xl--line-height: clamp(2.375rem, 1.739vw + 1.984rem, 3.375rem);
+  --text-5xl--letter-spacing: calc(
+    clamp(0.063rem, 0.082vw + 0.044rem, 0.109rem) * -1
+  );
+  --text-5xl--font-weight: 600;
+
+  /* h4 */
+  --text-4xl: clamp(1.875rem, 0.652vw + 1.728rem, 2.25rem);
+  --text-4xl--line-height: clamp(2.313rem, 0.761vw + 2.141rem, 2.75rem);
+  --text-4xl--letter-spacing: calc(
+    clamp(0.047rem, 0.054vw + 0.035rem, 0.078rem) * -1
+  );
+  --text-4xl--font-weight: 600;
+
+  /* h5 */
+  --text-3xl: clamp(1.75rem, 0.217vw + 1.701rem, 1.875rem);
+  --text-3xl--line-height: clamp(2.25rem, 0.217vw + 2.201rem, 2.375rem);
+  --text-3xl--letter-spacing: calc(
+    clamp(0.038rem, 0.043vw + 0.028rem, 0.063rem) * -1
+  );
+  --text-3xl--font-weight: 500;
+
+  /* text-2xl isn't assigned to a heading element. */
+  --text-2xl: clamp(1.375rem, 0.217vw + 1.326rem, 1.5rem);
+  --text-2xl--line-height: 2.125rem;
+  --text-2xl--letter-spacing: -0.046875rem;
+  --text-2xl--font-weight: 500;
+
+  /* Note */
+  /* Font size values text-xl and under don't resize on device size. */
+
+  /* text-xl */
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 1.875rem;
+  --text-xl--letter-spacing: -0.03125rem;
+  --text-xl--font-weight: 500;
+
+  /* text-lg */
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.75rem;
+  --text-lg--letter-spacing: -0.015625rem;
+  --text-lg--font-weight: 500;
+
+  /* text-base */
+  --text-base: 1rem;
+  --text-base--line-height: 1.5rem;
+  --text-base--letter-spacing: -0.0125rem;
+  --text-base--font-weight: 500;
+
+  /* text-sm */
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.375rem;
+  --text-sm--letter-spacing: -0.009375rem;
+  --text-sm--font-weight: 500;
+
+  /* text-xs */
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1.25rem;
+  --text-xs--letter-spacing: -0.00625rem;
+  --text-xs--font-weight: 500;
+}
+
+body {
+  font-family: var(--font-body);
+}
+
+/* Cap-Height Baseline — [font-family] */
+:is([class*="text-"], h1, h2, h3, h4, h5, h6, p, blockquote) {
+  display: flow-root;
+}
+
+:is([class*="text-"], h1, h2, h3, h4, h5, h6, p, blockquote)::before {
+  content: "";
+  display: table;
+  margin-bottom: calc(-0.5lh + 0.355em);
+}
+
+:is([class*="text-"], h1, h2, h3, h4, h5, h6, p, blockquote)::after {
+  content: "";
+  display: table;
+  margin-bottom: calc(-0.5lh + 0.295em);
+}
+
+/* Cap-Height Baseline — [font-family] */
+:is(h1, h2, h3, h4, h5)::before {
+  // margin-bottom: calc(-0.5lh + 0.33em) !important;
+}
+
+:is(h1, h2, h3, h4, h5)::after {
+  // margin-bottom: calc(-0.5lh + 0.36em) !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: var(--font-body);
+}
+
+.text-display {
+  font-size: var(--text-8xl);
+  line-height: var(--text-8xl--line-height);
+  letter-spacing: var(--text-8xl--letter-spacing);
+  font-weight: 600;
+}
+
+h1 {
+  font-size: var(--text-7xl);
+  font-weight: var(--text-7xl--font-weight);
+  letter-spacing: var(--text-7xl--letter-spacing);
+  line-height: var(--text-7xl--line-height);
+}
+
+h2 {
+  font-size: var(--text-6xl);
+  font-weight: var(--text-6xl--font-weight);
+  letter-spacing: var(--text-6xl--letter-spacing);
+  line-height: var(--text-6xl--line-height);
+}
+
+h3 {
+  font-size: var(--text-5xl);
+  font-weight: var(--text-5xl--font-weight);
+  letter-spacing: var(--text-5xl--letter-spacing);
+  line-height: var(--text-5xl--line-height);
+}
+
+h4 {
+  font-size: var(--text-4xl);
+  font-weight: var(--text-4xl--font-weight);
+  letter-spacing: var(--text-4xl--letter-spacing);
+  line-height: var(--text-4xl--line-height);
+}
+
+h5 {
+  font-size: var(--text-3xl);
+  font-weight: var(--text-3xl--font-weight);
+  letter-spacing: var(--text-3xl--letter-spacing);
+  line-height: var(--text-3xl--line-height);
+}
+
+p {
+  font-size: var(--text-base);
+  font-weight: var(--text-base--font-weight);
+  letter-spacing: var(--text-base--letter-spacing);
+  line-height: var(--text-base--line-height);
+}
+
+.text-9xl {
+  font-size: var(--text-9xl);
+  font-weight: var(--text-9xl--font-weight);
+  letter-spacing: var(--text-9xl--letter-spacing);
+  line-height: var(--text-9xl--line-height);
+}
+
+.text-8xl {
+  font-size: var(--text-8xl);
+  font-weight: var(--text-8xl--font-weight);
+  letter-spacing: var(--text-8xl--letter-spacing);
+  line-height: var(--text-8xl--line-height);
+}
+
+.text-7xl {
+  font-size: var(--text-7xl);
+  font-weight: var(--text-7xl--font-weight);
+  letter-spacing: var(--text-7xl--letter-spacing);
+  line-height: var(--text-7xl--line-height);
+}
+
+.text-6xl {
+  font-size: var(--text-6xl);
+  font-weight: var(--text-6xl--font-weight);
+  letter-spacing: var(--text-6xl--letter-spacing);
+  line-height: var(--text-6xl--line-height);
+}
+
+.text-5xl {
+  font-size: var(--text-5xl);
+  font-weight: var(--text-5xl--font-weight);
+  letter-spacing: var(--text-5xl--letter-spacing);
+  line-height: var(--text-5xl--line-height);
+}
+
+.text-4xl {
+  font-size: var(--text-4xl);
+  font-weight: var(--text-4xl--font-weight);
+  letter-spacing: var(--text-4xl--letter-spacing);
+  line-height: var(--text-4xl--line-height);
+}
+
+.text-3xl {
+  font-size: var(--text-3xl);
+  font-weight: var(--text-3xl--font-weight);
+  letter-spacing: var(--text-3xl--letter-spacing);
+  line-height: var(--text-3xl--line-height);
+}
+
+.text-2xl {
+  font-size: var(--text-2xl);
+  font-weight: var(--text-2xl--font-weight);
+  letter-spacing: var(--text-2xl--letter-spacing);
+  line-height: var(--text-2xl--line-height);
+}
+
+.text-xl {
+  font-size: var(--text-xl);
+  font-weight: var(--text-xl--font-weight);
+  letter-spacing: var(--text-xl--letter-spacing);
+  line-height: var(--text-xl--line-height);
+}
+
+.text-lg {
+  font-size: var(--text-lg);
+  font-weight: var(--text-lg--font-weight);
+  letter-spacing: var(--text-lg--letter-spacing);
+  line-height: var(--text-lg--line-height);
+}
+
+.text-base {
+  font-size: var(--text-base);
+  font-weight: var(--text-base--font-weight);
+  letter-spacing: var(--text-base--letter-spacing);
+  line-height: var(--text-base--line-height);
+}
+
+.text-sm {
+  font-size: var(--text-sm);
+  font-weight: var(--text-sm--font-weight);
+  letter-spacing: var(--text-sm--letter-spacing);
+  line-height: var(--text-sm--line-height);
+}
+
+.text-xs {
+  font-size: var(--text-xs);
+  font-weight: var(--text-xs--font-weight);
+  letter-spacing: var(--text-xs--letter-spacing);
+  line-height: var(--text-xs--line-height);
+}
