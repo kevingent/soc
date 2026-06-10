@@ -9,46 +9,35 @@ import Head from '../components/Head.astro';
 
 interface Props {
 	title?: string;
+	description?: string;
 }
 
-const { title } = Astro.props;
+const { title, description } = Astro.props;
 
 ---
 
 <!doctype html>
 <html lang="en">
 
-  <Head title={title} />
+  <Head title={title} description={description} />
 
   <body>
 
     <slot />
 
     <script>
-		  import Lenis from 'lenis';
+      import Lenis from 'lenis';
+      import { initScrollAnimations } from "../scripts/scroll-animate.js";
 
-		  const initLenis = () => {
-		    const lenis = new Lenis({
-		      autoRaf: true, // Automatically handles the animation loop
-		    });
-		  };
+      // Smooth scroll
+      new Lenis({ autoRaf: true });
 
-		  // Re-run on every page load if using View Transitions
-		  // document.addEventListener('astro:page-load', initLenis);
+      // Re-run on every page load if using View Transitions
+      // document.addEventListener('astro:page-load', initScrollAnimations);
 
-		  // Initial load
-		  initLenis();
-		</script>
-
-    <script>
-  		import { gsap } from "gsap";
-  		import { ScrollTrigger } from "gsap/ScrollTrigger";
-  		import { initScrollAnimations } from "../scripts/scroll-animate.js";
-
-  		gsap.registerPlugin(ScrollTrigger);
-      
-  		initScrollAnimations();
-  	</script>
+      // Scroll animations (GSAP + ScrollTrigger registered inside the module)
+      initScrollAnimations();
+    </script>
     
   </body>
 
