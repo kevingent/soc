@@ -6,44 +6,7 @@ import Default from '../layouts/Default.astro';
 
 <Default title="Playground">
 
-  <style>
-    .slider {
-      overflow: hidden;
-      width: fit-content;
-      max-width: 100%;
-
-      .slides {
-        display: flex;
-        will-change: transform;
-        cursor: grab;
-        user-select: none;
-
-        &.is-dragging {
-          cursor: grabbing;
-        }
-      }
-
-      .slide {
-        flex-shrink: 0;
-        aspect-ratio: 16 / 9;
-        max-width: 642px;
-        width: 70vw;
-
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          display: block;
-        }
-      }
-    }
-
-    .slider-controls {
-      display: flex;
-      gap: 0.5rem;
-      margin-top: 0.75rem;
-    }
-  </style>
+  <style></style>
 
   <div class="slider">
     <div class="slides">
@@ -55,8 +18,8 @@ import Default from '../layouts/Default.astro';
   </div>
 
   <div class="slider-controls">
-    <button class="slider-control" id="slider-prev"><i class="fa-solid fa-arrow-left"></i></button>
-    <button class="slider-control" id="slider-next"><i class="fa-solid fa-arrow-right"></i></button>
+    <button class="slider-control"><i class="fa-solid fa-arrow-left"></i></button>
+    <button class="slider-control"><i class="fa-solid fa-arrow-right"></i></button>
   </div>
 
   <div class="slider-headline">
@@ -82,61 +45,81 @@ import Default from '../layouts/Default.astro';
     </div>
   </div>
 
-  <script>
-    import gsap from 'gsap';
-    import { Draggable } from 'gsap/Draggable';
-    import { InertiaPlugin } from 'gsap/InertiaPlugin';
-
-    gsap.registerPlugin(Draggable, InertiaPlugin);
-
-    const track   = document.querySelector<HTMLElement>('.slides')!;
-    const slides  = document.querySelectorAll<HTMLElement>('.slide');
-    const prevBtn = document.getElementById('slider-prev')!;
-    const nextBtn = document.getElementById('slider-next')!;
-
-    let current = 0;
-    const total  = slides.length;
-
-    function slideWidth() {
-      return slides[0].offsetWidth;
-    }
-
-    function snapPoints() {
-      return Array.from({ length: total }, (_, i) => -(i * slideWidth()));
-    }
-
-    function goTo(index: number) {
-      current = Math.max(0, Math.min(index, total - 1));
-      const x = -(current * slideWidth());
-      gsap.to(track, { x, duration: 0.6, ease: 'power3.inOut', overwrite: true });
-      draggable[0].update(); // sync Draggable's internal x
-    }
-
-    const draggable = Draggable.create(track, {
-      type: 'x',
-      inertia: true,
-      snap: snapPoints,
-      onPress() {
-        track.classList.add('is-dragging');
-        gsap.killTweensOf(track);
-      },
-      onRelease() {
-        track.classList.remove('is-dragging');
-      },
-      onThrowComplete() {
-        // Sync current index after a drag+throw settles
-        const x = gsap.getProperty(track, 'x') as number;
-        current = Math.round(-x / slideWidth());
-        current = Math.max(0, Math.min(current, total - 1));
-      },
-      bounds: {
-        minX: -(slideWidth() * (total - 1)),
-        maxX: 0,
-      },
-    });
-
-    prevBtn.addEventListener('click', () => goTo(current - 1));
-    nextBtn.addEventListener('click', () => goTo(current + 1));
-  </script>
+  <section class="carousel_wrap">
+		<div class="carousel_contain carousel-3">
+			<div class="carousel_slides">
+				<div class="carousel_slide"><div class="carousel_slide_content">1</div></div>
+				<div class="carousel_slide"><div class="carousel_slide_content">2</div></div>
+				<div class="carousel_slide"><div class="carousel_slide_content">3</div></div>
+				<div class="carousel_slide"><div class="carousel_slide_content">4</div></div>
+				<div class="carousel_slide"><div class="carousel_slide_content">5</div></div>
+				<div class="carousel_slide"><div class="carousel_slide_content">6</div></div>
+				<div class="carousel_slide"><div class="carousel_slide_content">7</div></div>
+				<div class="carousel_slide"><div class="carousel_slide_content">8</div></div>
+				<div class="carousel_slide"><div class="carousel_slide_content">9</div></div>
+				<div class="carousel_slide"><div class="carousel_slide_content">10</div></div>
+			</div>
+			<div class="carousel_progress">
+				<div class="carousel_progress_bar"></div>
+			</div>
+			<div class="carousel_controls">
+				<div class="carousel_progress_dots"></div>
+				<div class="carousel_buttons">
+					<button class="btn icon-btn prev"><i class="fa-regular fa-arrow-left"></i></button>
+					<button class="btn icon-btn next"><i class="fa-regular fa-arrow-right"></i></button>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="carousel_wrap">
+		<div class="carousel_contain carousel-2">
+			<div class="carousel_slides">
+				<div class="carousel_slide"><div class="carousel_slide_content">1</div></div>
+				<div class="carousel_slide"><div class="carousel_slide_content">2</div></div>
+				<div class="carousel_slide"><div class="carousel_slide_content">3</div></div>
+				<div class="carousel_slide"><div class="carousel_slide_content">4</div></div>
+				<div class="carousel_slide"><div class="carousel_slide_content">5</div></div>
+				<div class="carousel_slide"><div class="carousel_slide_content">6</div></div>
+				<div class="carousel_slide"><div class="carousel_slide_content">7</div></div>
+			</div>
+			<div class="carousel_progress">
+				<div class="carousel_progress_bar"></div>
+			</div>
+			<div class="carousel_controls">
+				<div class="carousel_progress_dots"></div>
+				<div class="carousel_buttons">
+					<button class="btn icon-btn prev"><i class="fa-regular fa-arrow-left"></i></button>
+					<button class="btn icon-btn next"><i class="fa-regular fa-arrow-right"></i></button>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="carousel_wrap">
+		<div class="carousel_contain carousel-1">
+			<div class="carousel_slides">
+				<div class="carousel_slide"><div class="carousel_slide_content">1</div></div>
+				<div class="carousel_slide"><div class="carousel_slide_content">2</div></div>
+				<div class="carousel_slide"><div class="carousel_slide_content">3</div></div>
+				<div class="carousel_slide"><div class="carousel_slide_content">4</div></div>
+				<div class="carousel_slide"><div class="carousel_slide_content">5</div></div>
+				<div class="carousel_slide"><div class="carousel_slide_content">6</div></div>
+				<div class="carousel_slide"><div class="carousel_slide_content">7</div></div>
+			</div>
+			<div class="carousel_progress">
+				<div class="carousel_progress_bar"></div>
+			</div>
+			<div class="carousel_controls">
+				<div class="carousel_progress_dots"></div>
+				<div class="carousel_buttons">
+					<button class="btn icon-btn prev"><i class="fa-regular fa-arrow-left"></i></button>
+					<button class="btn icon-btn next"><i class="fa-regular fa-arrow-right"></i></button>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Custom Scripts -->
+	<script>
+		import "../scripts/carousels.js";
+	</script>
 
 </Default>

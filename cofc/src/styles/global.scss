@@ -13,7 +13,8 @@ html.lenis body { height: auto; }
 .lenis.lenis-stopped { overflow: hidden; }
 
 body {
-  background-color: var(--background-base);
+  background-color: #000;
+  //background-color: var(--background-base);
   color: var(--text-base);
 }
 
