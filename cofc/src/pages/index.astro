@@ -1,26 +1,12 @@
 ---
 
 import Default from '../layouts/Default.astro';
+import Carousel from '../components/Carousel.astro';
+import CarouselSlide from '../components/CarouselSlide.astro';
 
 ---
 
 <Default title="Playground">
-
-  <style></style>
-
-  <div class="slider">
-    <div class="slides">
-      <div class="slide"><img src="/public/images/img.jpg"></div>
-      <div class="slide"><img src="/public/images/img.jpg"></div>
-      <div class="slide"><img src="/public/images/img.jpg"></div>
-      <div class="slide"><img src="/public/images/img.jpg"></div>
-    </div>
-  </div>
-
-  <div class="slider-controls">
-    <button class="slider-control"><i class="fa-solid fa-arrow-left"></i></button>
-    <button class="slider-control"><i class="fa-solid fa-arrow-right"></i></button>
-  </div>
 
   <div class="slider-headline">
     <h1 class="">Heading 1</h1>
@@ -45,81 +31,25 @@ import Default from '../layouts/Default.astro';
     </div>
   </div>
 
-  <section class="carousel_wrap">
-		<div class="carousel_contain carousel-3">
-			<div class="carousel_slides">
-				<div class="carousel_slide"><div class="carousel_slide_content">1</div></div>
-				<div class="carousel_slide"><div class="carousel_slide_content">2</div></div>
-				<div class="carousel_slide"><div class="carousel_slide_content">3</div></div>
-				<div class="carousel_slide"><div class="carousel_slide_content">4</div></div>
-				<div class="carousel_slide"><div class="carousel_slide_content">5</div></div>
-				<div class="carousel_slide"><div class="carousel_slide_content">6</div></div>
-				<div class="carousel_slide"><div class="carousel_slide_content">7</div></div>
-				<div class="carousel_slide"><div class="carousel_slide_content">8</div></div>
-				<div class="carousel_slide"><div class="carousel_slide_content">9</div></div>
-				<div class="carousel_slide"><div class="carousel_slide_content">10</div></div>
-			</div>
-			<div class="carousel_progress">
-				<div class="carousel_progress_bar"></div>
-			</div>
-			<div class="carousel_controls">
-				<div class="carousel_progress_dots"></div>
-				<div class="carousel_buttons">
-					<button class="btn icon-btn prev"><i class="fa-regular fa-arrow-left"></i></button>
-					<button class="btn icon-btn next"><i class="fa-regular fa-arrow-right"></i></button>
-				</div>
-			</div>
-		</div>
-	</section>
-	<section class="carousel_wrap">
-		<div class="carousel_contain carousel-2">
-			<div class="carousel_slides">
-				<div class="carousel_slide"><div class="carousel_slide_content">1</div></div>
-				<div class="carousel_slide"><div class="carousel_slide_content">2</div></div>
-				<div class="carousel_slide"><div class="carousel_slide_content">3</div></div>
-				<div class="carousel_slide"><div class="carousel_slide_content">4</div></div>
-				<div class="carousel_slide"><div class="carousel_slide_content">5</div></div>
-				<div class="carousel_slide"><div class="carousel_slide_content">6</div></div>
-				<div class="carousel_slide"><div class="carousel_slide_content">7</div></div>
-			</div>
-			<div class="carousel_progress">
-				<div class="carousel_progress_bar"></div>
-			</div>
-			<div class="carousel_controls">
-				<div class="carousel_progress_dots"></div>
-				<div class="carousel_buttons">
-					<button class="btn icon-btn prev"><i class="fa-regular fa-arrow-left"></i></button>
-					<button class="btn icon-btn next"><i class="fa-regular fa-arrow-right"></i></button>
-				</div>
-			</div>
-		</div>
-	</section>
-	<section class="carousel_wrap">
-		<div class="carousel_contain carousel-1">
-			<div class="carousel_slides">
-				<div class="carousel_slide"><div class="carousel_slide_content">1</div></div>
-				<div class="carousel_slide"><div class="carousel_slide_content">2</div></div>
-				<div class="carousel_slide"><div class="carousel_slide_content">3</div></div>
-				<div class="carousel_slide"><div class="carousel_slide_content">4</div></div>
-				<div class="carousel_slide"><div class="carousel_slide_content">5</div></div>
-				<div class="carousel_slide"><div class="carousel_slide_content">6</div></div>
-				<div class="carousel_slide"><div class="carousel_slide_content">7</div></div>
-			</div>
-			<div class="carousel_progress">
-				<div class="carousel_progress_bar"></div>
-			</div>
-			<div class="carousel_controls">
-				<div class="carousel_progress_dots"></div>
-				<div class="carousel_buttons">
-					<button class="btn icon-btn prev"><i class="fa-regular fa-arrow-left"></i></button>
-					<button class="btn icon-btn next"><i class="fa-regular fa-arrow-right"></i></button>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Custom Scripts -->
-	<script>
-		import "../scripts/carousels.js";
-	</script>
+  <Carousel variant="3" class="bg-neutral-950" throwDuration={2} data-mode="dark">
+    <CarouselSlide src="/images/img.jpg"><span class="text-5xl">01</span></CarouselSlide>
+    <CarouselSlide src="/images/img.jpg"><span class="text-5xl">02</span></CarouselSlide>
+    <CarouselSlide src="/images/img.jpg"><span class="text-5xl">03</span></CarouselSlide>
+    <CarouselSlide src="/images/img.jpg"><span class="text-5xl">04</span></CarouselSlide>
+  </Carousel>
+
+  <Carousel variant="2" navDuration={0.2} dragSpeed={1.4} throwDuration={1} class="bg-amber-500" data-mode="dark">
+    <CarouselSlide src="/images/img.jpg"><span class="text-5xl">01</span></CarouselSlide>
+    <CarouselSlide src="/images/img.jpg"><span class="text-5xl">02</span></CarouselSlide>
+    <CarouselSlide src="/images/img.jpg"><span class="text-5xl">03</span></CarouselSlide>
+    <CarouselSlide src="/images/img.jpg"><span class="text-5xl">04</span></CarouselSlide>
+  </Carousel>
+
+  <Carousel variant="1" throwDuration={0.5}>
+    <CarouselSlide src="/images/img.jpg"><span class="text-5xl">01</span></CarouselSlide>
+    <CarouselSlide src="/images/img.jpg"><span class="text-5xl">02</span></CarouselSlide>
+    <CarouselSlide src="/images/img.jpg"><span class="text-5xl">03</span></CarouselSlide>
+    <CarouselSlide src="/images/img.jpg"><span class="text-5xl">04</span></CarouselSlide>
+  </Carousel>
 
 </Default>

@@ -13,9 +13,8 @@ html.lenis body { height: auto; }
 .lenis.lenis-stopped { overflow: hidden; }
 
 body {
-  background-color: #000;
-  //background-color: var(--background-base);
-  color: var(--text-base);
+  background-color: var(--background-base);
+  color: var(--text-color-base);
 }
 
 svg {
@@ -26,7 +25,7 @@ header,
 main,
 footer,
 section {
-  color: var(--text-base);
+  color: var(--text-color-base);
   position: relative;
 }
 

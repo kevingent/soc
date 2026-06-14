@@ -23,9 +23,9 @@
   --background-card: var(--color-zinc-100);
   --background-absolute: var(--color-zinc-400);
 
-  --text-base: var(--color-zinc-900);
-  --text-secondary: var(--color-zinc-700);
-  --text-tertiary: var(--color-zinc-500);
+  --text-color-base: var(--color-zinc-900);
+  --text-color-secondary: var(--color-zinc-700);
+  --text-color-tertiary: var(--color-zinc-500);
 
   --transparency-t-transparent: var(--transparency-t-dark-0);
   --transparency-t-light: var(--transparency-t-dark-4);
@@ -76,9 +76,9 @@
   --background-base: var(--color-zinc-900);
   --background-card: var(--color-zinc-950);
   --background-absolute: var(--color-zinc-400);
-  --text-base: var(--color-zinc-100);
-  --text-secondary: var(--color-zinc-300);
-  --text-tertiary: var(--color-zinc-500);
+  --text-color-base: var(--color-zinc-100);
+  --text-color-secondary: var(--color-zinc-300);
+  --text-color-tertiary: var(--color-zinc-500);
   --transparency-t-transparent: var(--transparency-t-light-0);
   --transparency-t-light: var(--transparency-t-light-4);
   --transparency-t-default: var(--transparency-t-light-12);

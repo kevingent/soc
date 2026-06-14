@@ -1,16 +1,5 @@
-:root {
-	--t-light-4: rgba(255, 255, 255, 0.04);
-	--t-light-12: rgba(255, 255, 255, 0.12);
-	--t-light-40: rgba(255, 255, 255, 0.4);
-	--t-dark-4: rgba(0, 0, 0, 0.04);
-	--t-dark-12: rgba(0, 0, 0, 0.12);
-	--t-dark-40: rgba(0, 0, 0, 0.4);
-	--color-white: #fff;
-	--color-black: #000;
-}
-
-// .carousel_wrap {}
-	.carousel_contain {
+// .carousel-wrap {}
+	.carousel-contain {
 		width: 100%;
 		height: 100vh;
 		overflow: hidden;
@@ -20,67 +9,84 @@
 		flex-direction: column;
 		position: relative;
 	}
-	.carousel_controls {
+	.carousel-controls {
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		gap: 1rem;
 		margin-top: 1rem;
 	}
-		.carousel_buttons {
+		.carousel-buttons {
 			display: flex;
 			justify-content: center;
 			align-items: center;
 			gap: 0.5rem;
 		}
-		.carousel_progress {
+		.carousel-progress {
 			width: 100%;
 			height: 0.5rem;
-			background-color: var(--t-light-12);
+			background-color: var(--transparency-t-default, rgba(255, 255, 255, 0.12));
 			position: absolute;
 			overflow: hidden;
 		}
-			.carousel_progress_bar {
+			.carousel-progress-bar {
 				width: 0%;
 				height: 100%;
-				background-color: var(--color-white);
+				background-color: var(--text-color-base, #fff);
 			}
-		.carousel_progress_dots {
+		.carousel-progress-dots {
 			display: flex;
 			justify-content: center;
 			align-items: center;
 			gap: 0.75rem;
 		}
-			.carousel_progress_dot {
+			.carousel-progress-dot {
 				width: 0.75rem;
 				height: 0.75rem;
-				background-color: var(--t-light-12);
+				background-color: var(--transparency-t-default, rgba(255, 255, 255, 0.12));
 				border-radius: 50%;
 				transform: scale(1);
 				transition: background 0.3s;
 				cursor: pointer;
 				&:hover {
-					background-color: var(--t-light-40);
+					background-color: var(--transparency-t-darker, rgba(255, 255, 255, 0.40));
 				}
 				&.active {
-					background-color: var(--color-white);
+					background-color: var(--text-color-base, #fff);
 				}
 			}
-	.carousel_slides {
+	.carousel-slides {
 		width: 100%;
 		position: relative;
 		display: flex;
 		align-items: center;
 	}
-		.carousel_slide {
+		.carousel-slide {
 			padding: 0 0.5rem;
+			.carousel-slide-img {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				z-index: 0;
+			}
+			.carousel-slide-info {
+				position: relative;
+				z-index: 1;
+			}
+			img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
 			&.active {
-				.carousel_slide_content {
-					background-color: var(--t-light-40);
-				}
+				// Add anything to this style to create a new active state.
+				// .carousel-slide-content {}
+				.carousel-slide-img {}
 			}
 		}
-			.carousel_slide_content {
+			.carousel-slide-content {
 				display: flex;
 				align-items: flex-end;
 				justify-content: flex-start;
@@ -88,9 +94,8 @@
 				padding: 1.125rem 2.5rem;
 				position: relative;
 				flex-shrink: 0;
-				font-size: clamp(2rem, 1.429rem + 2.857vw, 4rem);
 				cursor: pointer;
-				background-color: var(--t-light-12);
+				background-color: var(--transparency-t-default, rgba(255, 255, 255, 0.12));
 				transition-property: background-color;
 				transition-duration: 0.3s;
 				transition-timing-function: ease-in-out;
@@ -102,7 +107,7 @@
 	cursor: pointer;
 	padding: 0;
 	margin: 0;
-	color: var(--color-white);
+	color: var(--text-color-base, #fff);
 	&.icon-btn {
 		display: flex;
 		justify-content: center;
@@ -112,23 +117,23 @@
 		font-size: 1rem;
 		transition: all 0.3s;
 		border-radius: 50%;
-		border: 1px solid var(--t-light-12);
+		border: 1px solid var(--transparency-t-default, rgba(255, 255, 255, 0.12));
 		&:hover {
-			border: 2px solid var(--t-light-40);
+			border: 2px solid var(--transparency-t-darker, rgba(255, 255, 255, 0.40));
 		}
 	}
 }
 
 // Landscape Carousel
 .carousel-1 {
-	.carousel_progress {
+	.carousel-progress {
 		bottom: 0;
 		left: 0;
 	}
-	.carousel_progress_dots {
+	.carousel-progress-dots {
 		display: none;
 	}
-	.carousel_slide_content {
+	.carousel-slide-content {
 		width: clamp(20rem, 7.429rem + 62.857vw, 64rem);
 		aspect-ratio: 16/9;
 	}
@@ -136,16 +141,16 @@
 
 // Square Carousel
 .carousel-2 {
-	.carousel_progress {
+	.carousel-progress {
 		display: none;
 	}
-	.carousel_controls {
+	.carousel-controls {
 		width: calc(100% - 2rem);
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 	}
-	.carousel_slide_content {
+	.carousel-slide-content {
 		width: clamp(16rem, 10.286rem + 28.571vw, 36rem);
 		aspect-ratio: 1/1;
 	}
@@ -153,12 +158,12 @@
 
 // Fullscreen Carousel
 .carousel-3 {
-	.carousel_controls,
-	.carousel_progress {
+	.carousel-controls,
+	.carousel-progress {
 		display: none;
 	}
-	.carousel_slides {}
-	.carousel_slide_content {
+	.carousel-slides {}
+	.carousel-slide-content {
 		width: calc(100vw - 2rem);
 		height: calc(100vh - 2rem);
 		left: 0;

@@ -7,18 +7,28 @@ gsap.registerPlugin(Draggable);
 gsap.registerPlugin(InertiaPlugin);
 gsap.registerPlugin(Observer);
 
-document.querySelectorAll('.carousel_contain').forEach((container) => {
-	const slidesContainer = container.querySelector(".carousel_slides");
-	const slides = gsap.utils.toArray(container.querySelectorAll(".carousel_slide"));
-	const progressBar = container.querySelector('.carousel_progress_bar');
-	const dots = container.querySelector('.carousel_progress_dots');
+document.querySelectorAll('.carousel-contain').forEach((container) => {
+
+	// --- Config: read data attributes with fallback defaults ---
+	const navDuration   = parseFloat(container.dataset.navDuration   ?? '0.4');  // prev/next & dot click speed
+	const navEase       = container.dataset.navEase                   ?? 'power1.inOut'; // prev/next easing curve
+	const dragSpeed     = parseFloat(container.dataset.dragSpeed      ?? '0.8');  // drag sensitivity (higher = slides move faster per pixel)
+	const throwDuration = parseFloat(container.dataset.throwDuration  ?? '2');    // max seconds for the throw to decelerate after release
+	const startIndex    = parseInt(container.dataset.startIndex       ?? '0', 10); // which slide to start on
+	const activeY       = container.dataset.activeY                   ?? '0';     // lift offset for the active slide (e.g. "-1rem")
+	// -----------------------------------------------------------
+
+	const slidesContainer = container.querySelector(".carousel-slides");
+	const slides = gsap.utils.toArray(container.querySelectorAll(".carousel-slide"));
+	const progressBar = container.querySelector('.carousel-progress-bar');
+	const dots = container.querySelector('.carousel-progress-dots');
 	let activeElement;
 	dots.innerHTML = ''; // Clear any existing dots
 
 	slides.forEach((_, i) => {
 		const dot = document.createElement('div');
-		dot.classList.add('carousel_progress_dot');
-		dot.addEventListener('click', () => loop.toIndex(i, { duration: 0.8, ease: "power1.inOut" }));
+		dot.classList.add('carousel-progress-dot');
+		dot.addEventListener('click', () => loop.toIndex(i, { duration: navDuration, ease: navEase }));
 		dots.appendChild(dot);
 	});
 	const dotsArray = Array.from(dots.children);
@@ -27,12 +37,14 @@ document.querySelectorAll('.carousel_contain').forEach((container) => {
 		paused: true,
 		draggable: true,
 		center: true,
+		dragSpeed: dragSpeed,
+		throwDuration: throwDuration,
 		onChange: (element, index) => {
 			if (activeElement) {
 				gsap.to(activeElement, { y: 0, duration: 0.4, ease: "power2.out" });
 				activeElement.classList.remove("active");
 			}
-			// gsap.to(element, { y: "-1rem", duration: 0.4, ease: "power2.out" });
+			gsap.to(element, { y: activeY, duration: 0.4, ease: "power2.out" });
 			element.classList.add("active");
 			activeElement = element;
 
@@ -54,12 +66,12 @@ document.querySelectorAll('.carousel_contain').forEach((container) => {
 		}
 	});
 
-	loop.toIndex(0, {duration: 0});
+	loop.toIndex(startIndex, {duration: 0});
 
-	slides.forEach((slide, i) => slide.addEventListener("click", () => loop.toIndex(i, {duration: 0.8, ease: "power1.inOut"})));
+	slides.forEach((slide, i) => slide.addEventListener("click", () => loop.toIndex(i, {duration: navDuration, ease: navEase})));
 
-	container.querySelector(".next").addEventListener("click", () => loop.next({duration: 0.4, ease: "power1.inOut"}));
-	container.querySelector(".prev").addEventListener("click", () => loop.previous({duration: 0.4, ease: "power1.inOut"}));
+	container.querySelector(".next").addEventListener("click", () => loop.next({duration: navDuration, ease: navEase}));
+	container.querySelector(".prev").addEventListener("click", () => loop.previous({duration: navDuration, ease: navEase}));
 });
 
 function horizontalLoop(items, config) {
@@ -209,7 +221,7 @@ function horizontalLoop(items, config) {
 					tl.pause();
 					startProgress = tl.progress();
 					refresh();
-					ratio = 0.8 / totalWidth; // Changes how fast the slides move on drag
+					ratio = (config.dragSpeed || 0.8) / totalWidth; // dragSpeed controls how fast slides move on drag
 					initChangeX = (startProgress / -ratio) - x;
 					gsap.set(proxy, {x: startProgress / -ratio});
 				},
@@ -217,6 +229,8 @@ function horizontalLoop(items, config) {
 				onThrowUpdate: align,
 				overshootTolerance: 0,
 				inertia: true,
+				maxDuration: config.throwDuration ?? 2,
+				minDuration: 0.1,
 				snap(value) {
 					//note: if the user presses and releases in the middle of a throw, due to the sudden correction of proxy.x in the onPressInit(), the velocity could be very large, throwing off the snap. So sense that condition and adjust for it. We also need to set overshootTolerance to 0 to prevent the inertia from causing it to shoot past and come back
 					if (Math.abs(startProgress / -ratio - this.x) < 10) {

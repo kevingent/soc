@@ -100,11 +100,6 @@
   --text-xs--font-weight: 400;
 }
 
-body {
-  background-color: #F7BC46;
-  color: #431505;
-}
-
 /* Cap-Height Baseline — Poppins */
 :is([class*="text-"], h1, h2, h3, h4, h5, h6, p, blockquote) {
   display: flow-root;

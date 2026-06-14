@@ -1,0 +1,59 @@
+---
+
+import "../styles/carousels.scss";
+
+interface Props {
+	variant?: "1" | "2" | "3";
+	class?: string;
+	navDuration?: number;
+	navEase?: string;
+	dragSpeed?: number;
+	throwDuration?: number;
+	startIndex?: number;
+	activeY?: string;
+	[key: string]: unknown; // allows data-mode and other HTML attrs to pass through
+}
+
+const {
+	variant = "1",
+	class: className,
+	navDuration,
+	navEase,
+	dragSpeed,
+	throwDuration,
+	startIndex,
+	activeY,
+	...rest
+} = Astro.props;
+
+---
+
+<section class:list={["carousel-wrap", className]} {...rest}>
+	<div
+		class={`carousel-contain carousel-${variant}`}
+		data-nav-duration={navDuration}
+		data-nav-ease={navEase}
+		data-drag-speed={dragSpeed}
+		data-throw-duration={throwDuration}
+		data-start-index={startIndex}
+		data-active-y={activeY}
+	>
+		<div class="carousel-slides">
+			<slot />
+		</div>
+		<div class="carousel-progress">
+			<div class="carousel-progress-bar"></div>
+		</div>
+		<div class="carousel-controls">
+			<div class="carousel-progress-dots"></div>
+			<div class="carousel-buttons">
+				<button class="btn icon-btn prev"><i class="fa-regular fa-arrow-left"></i></button>
+				<button class="btn icon-btn next"><i class="fa-regular fa-arrow-right"></i></button>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+	import "../scripts/carousels.js";
+</script>
