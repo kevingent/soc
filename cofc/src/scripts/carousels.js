@@ -1,11 +1,9 @@
 import { gsap } from "gsap";
 import { Draggable } from "gsap/Draggable";
 import { InertiaPlugin } from "gsap/InertiaPlugin";
-import { Observer } from "gsap/Observer";
 
-gsap.registerPlugin(Draggable);
-gsap.registerPlugin(InertiaPlugin);
-gsap.registerPlugin(Observer);
+// Single combined registration call — Observer removed (unused)
+gsap.registerPlugin(Draggable, InertiaPlugin);
 
 document.querySelectorAll('.carousel-contain').forEach((container) => {
 
@@ -18,60 +16,64 @@ document.querySelectorAll('.carousel-contain').forEach((container) => {
 	const activeY       = container.dataset.activeY                   ?? '0';     // lift offset for the active slide (e.g. "-1rem")
 	// -----------------------------------------------------------
 
-	const slidesContainer = container.querySelector(".carousel-slides");
-	const slides = gsap.utils.toArray(container.querySelectorAll(".carousel-slide"));
+	const slides      = gsap.utils.toArray(container.querySelectorAll('.carousel-slide'));
 	const progressBar = container.querySelector('.carousel-progress-bar');
-	const dots = container.querySelector('.carousel-progress-dots');
-	let activeElement;
-	dots.innerHTML = ''; // Clear any existing dots
+	const dots        = container.querySelector('.carousel-progress-dots');
+	const navVars     = { duration: navDuration, ease: navEase }; // shared — reused for all nav animations
 
+	let activeElement;
+	let activeDot;
+
+	// Build progress dots
+	dots.innerHTML = '';
 	slides.forEach((_, i) => {
 		const dot = document.createElement('div');
 		dot.classList.add('carousel-progress-dot');
-		dot.addEventListener('click', () => loop.toIndex(i, { duration: navDuration, ease: navEase }));
+		dot.addEventListener('click', () => loop.toIndex(i, navVars));
 		dots.appendChild(dot);
 	});
-	const dotsArray = Array.from(dots.children);
+	const dotsArray = [...dots.children];
 
 	const loop = horizontalLoop(slides, {
 		paused: true,
 		draggable: true,
 		center: true,
-		dragSpeed: dragSpeed,
-		throwDuration: throwDuration,
-		onChange: (element, index) => {
+		dragSpeed,
+		throwDuration,
+		onChange(element, index) {
+			// Deactivate previous slide
 			if (activeElement) {
-				gsap.to(activeElement, { y: 0, duration: 0.4, ease: "power2.out" });
-				activeElement.classList.remove("active");
+				gsap.to(activeElement, { y: 0, duration: 0.4, ease: 'power2.out' });
+				activeElement.classList.remove('active');
 			}
-			gsap.to(element, { y: activeY, duration: 0.4, ease: "power2.out" });
-			element.classList.add("active");
+			// Activate new slide
+			gsap.to(element, { y: activeY, duration: 0.4, ease: 'power2.out' });
+			element.classList.add('active');
 			activeElement = element;
 
+			// Progress bar
 			gsap.to(progressBar, {
 				width: `${(index / (slides.length - 1)) * 100}%`,
 				duration: 1,
-				ease: "expo.out",
+				ease: 'expo.out',
 			});
 
-			dotsArray.forEach((dot, i) => {
-				if (i === index) {
-					dot.classList.add('active');
-					gsap.to(dot, { scale: 1.25, duration: 0.3, ease: "power2.out" });
-				} else {
-					dot.classList.remove('active');
-					gsap.to(dot, { scale: 1, duration: 0.3, ease: "power2.out" });
-				}
-			});
-		}
+			// Dots — only animate the 2 that actually change (previously all dots were updated)
+			if (activeDot) {
+				activeDot.classList.remove('active');
+				gsap.to(activeDot, { scale: 1, duration: 0.3, ease: 'power2.out' });
+			}
+			activeDot = dotsArray[index];
+			activeDot.classList.add('active');
+			gsap.to(activeDot, { scale: 1.25, duration: 0.3, ease: 'power2.out' });
+		},
 	});
 
-	loop.toIndex(startIndex, {duration: 0});
+	loop.toIndex(startIndex, { duration: 0 });
 
-	slides.forEach((slide, i) => slide.addEventListener("click", () => loop.toIndex(i, {duration: navDuration, ease: navEase})));
-
-	container.querySelector(".next").addEventListener("click", () => loop.next({duration: navDuration, ease: navEase}));
-	container.querySelector(".prev").addEventListener("click", () => loop.previous({duration: navDuration, ease: navEase}));
+	slides.forEach((slide, i) => slide.addEventListener('click', () => loop.toIndex(i, navVars)));
+	container.querySelector('.next').addEventListener('click', () => loop.next(navVars));
+	container.querySelector('.prev').addEventListener('click', () => loop.previous(navVars));
 });
 
 function horizontalLoop(items, config) {
@@ -183,7 +185,7 @@ function horizontalLoop(items, config) {
 			}
 			curIndex = newIndex;
 			vars.overwrite = true;
-			gsap.killTweensOf(proxy);    
+			gsap.killTweensOf(proxy);
 			return vars.duration === 0 ? tl.time(timeWrap(time)) : tl.tweenTo(time, vars);
 		}
 		tl.toIndex = (index, vars) => toIndex(index, vars);
@@ -204,13 +206,12 @@ function horizontalLoop(items, config) {
 			tl.vars.onReverseComplete();
 			tl.reverse();
 		}
-		if (config.draggable && typeof(Draggable) === "function") {
+		if (config.draggable) { // static import guarantees Draggable is always available
 			proxy = document.createElement("div")
 			let wrap = gsap.utils.wrap(0, 1),
-				ratio, startProgress, draggable, dragSnap, lastSnap, initChangeX, wasPlaying,
+				ratio, startProgress, draggable, lastSnap, initChangeX, wasPlaying,
 				align = () => tl.progress(wrap(startProgress + (draggable.startX - draggable.x) * ratio)),
 				syncIndex = () => tl.closestIndex(true);
-			typeof(InertiaPlugin) === "undefined" && console.warn("InertiaPlugin required for momentum-based scrolling and snapping. https://greensock.com/club");
 			draggable = Draggable.create(proxy, {
 				trigger: items[0].parentNode,
 				type: "x",
