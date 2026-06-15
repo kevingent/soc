@@ -1,0 +1,84 @@
+:root {
+  --transitionSpeed: all 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.btn {
+  cursor: pointer;
+	pointer-events: all;
+	padding: 0 1.25rem;
+	text-transform: uppercase;
+	font-size: 0.875rem;
+	font-family: "Poppins";
+	font-weight: 600;
+	color: var(--color-white, #fff);
+	height: 44px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  z-index: 1;
+  position: relative;
+
+  &.btn-carousel {
+    position: absolute;
+  	bottom: 1.5rem;
+    &::after {
+			content: '';
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: -1;
+			background-color: var(--button-ladle-bg);
+			transition: var(--transitionSpeed);
+		}
+		&:hover {   &::after { transform: scale(1.04); } }
+		&:active {  &::after { transform: scale(0.98); } }
+  }
+
+  &.btn-ladle {
+    &::after {
+			content: '';
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: -1;
+			background-color: var(--button-ladle-bg);
+			transition: var(--transitionSpeed);
+		}
+		&:hover {   &::after { transform: scale(1.04); } }
+		&:active {  &::after { transform: scale(0.98); } }
+  }
+
+  &.btn-icon {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 2.75rem;
+		width: 2.75rem;
+		font-size: 1rem;
+		transition: var(--transitionSpeed);
+		position: relative;
+		color: #fff;
+		&::after {
+			content: '';
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: -1;
+			background-color: var(--button-ladle-bg);
+			transition: var(--transitionSpeed);
+			border-radius: 50%;
+		}
+		&:hover {
+			&::after { transform: scale(1.1); }
+		}
+		&:active {
+			&::after { transform: scale(0.98); }
+		}
+	}
+}

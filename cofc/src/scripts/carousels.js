@@ -17,9 +17,21 @@ document.querySelectorAll('.carousel-contain').forEach((container) => {
 	// -----------------------------------------------------------
 
 	const slides      = gsap.utils.toArray(container.querySelectorAll('.carousel-slide'));
+
+	// Stamp incremental slide-N classes (1-indexed) onto each slide
+	slides.forEach((slide, i) => slide.classList.add(`slide-${i + 1}`));
 	const progressBar = container.querySelector('.carousel-progress-bar');
 	const dots        = container.querySelector('.carousel-progress-dots');
 	const navVars     = { duration: navDuration, ease: navEase }; // shared — reused for all nav animations
+
+	// Tracks the latest active index so we can dispatch at the right settled moment
+	let pendingIndex = startIndex;
+	function dispatchSettled() {
+		container.dispatchEvent(new CustomEvent('carousel:change', {
+			detail: { index: pendingIndex, slideNumber: pendingIndex + 1 },
+			bubbles: true,
+		}));
+	}
 
 	let activeElement;
 	let activeDot;
@@ -29,7 +41,7 @@ document.querySelectorAll('.carousel-contain').forEach((container) => {
 	slides.forEach((_, i) => {
 		const dot = document.createElement('div');
 		dot.classList.add('carousel-progress-dot');
-		dot.addEventListener('click', () => loop.toIndex(i, navVars));
+		dot.addEventListener('click', () => loop.toIndex(i, { ...navVars, onComplete: dispatchSettled }));
 		dots.appendChild(dot);
 	});
 	const dotsArray = [...dots.children];
@@ -40,6 +52,7 @@ document.querySelectorAll('.carousel-contain').forEach((container) => {
 		center: true,
 		dragSpeed,
 		throwDuration,
+		onSettled: dispatchSettled,
 		onChange(element, index) {
 			// Deactivate previous slide
 			if (activeElement) {
@@ -50,6 +63,9 @@ document.querySelectorAll('.carousel-contain').forEach((container) => {
 			gsap.to(element, { y: activeY, duration: 0.4, ease: 'power2.out' });
 			element.classList.add('active');
 			activeElement = element;
+
+			// Track the latest slide — event dispatches only from settled states below
+			pendingIndex = index;
 
 			// Progress bar
 			gsap.to(progressBar, {
@@ -71,9 +87,9 @@ document.querySelectorAll('.carousel-contain').forEach((container) => {
 
 	loop.toIndex(startIndex, { duration: 0 });
 
-	slides.forEach((slide, i) => slide.addEventListener('click', () => loop.toIndex(i, navVars)));
-	container.querySelector('.next').addEventListener('click', () => loop.next(navVars));
-	container.querySelector('.prev').addEventListener('click', () => loop.previous(navVars));
+	slides.forEach((slide, i) => slide.addEventListener('click', () => loop.toIndex(i, { ...navVars, onComplete: dispatchSettled })));
+	container.querySelector('.next').addEventListener('click', () => loop.next({ ...navVars, onComplete: dispatchSettled }));
+	container.querySelector('.prev').addEventListener('click', () => loop.previous({ ...navVars, onComplete: dispatchSettled }));
 });
 
 function horizontalLoop(items, config) {
@@ -82,6 +98,7 @@ function horizontalLoop(items, config) {
 	config = config || {};
 	gsap.context(() => { // use a context so that if this is called from within another context or a gsap.matchMedia(), we can perform proper cleanup like the "resize" event handler on the window
 		let onChange = config.onChange,
+			onSettled = config.onSettled,
 			lastIndex = 0,
 			tl = gsap.timeline({repeat: config.repeat, onUpdate: onChange && function() {
 					let i = tl.closestIndex();
@@ -247,11 +264,18 @@ function horizontalLoop(items, config) {
 				},
 				onRelease() {
 					syncIndex();
-					draggable.isThrowing && (indexIsDirty = true);
+					if (draggable.isThrowing) {
+						indexIsDirty = true;
+					} else {
+						// Released without a throw — already at rest
+						onSettled?.();
+					}
 				},
 				onThrowComplete: () => {
 					syncIndex();
 					wasPlaying && tl.play();
+					// Inertia finished — carousel has landed
+					onSettled?.();
 				}
 			})[0];
 			tl.draggable = draggable;

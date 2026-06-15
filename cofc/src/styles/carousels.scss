@@ -101,29 +101,6 @@
 				transition-timing-function: ease-in-out;
 			}
 
-.btn {
-	background-color: transparent;
-	border: none;
-	cursor: pointer;
-	padding: 0;
-	margin: 0;
-	color: var(--text-color-base, #fff);
-	&.icon-btn {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		height: 2.75rem;
-		width: 2.75rem;
-		font-size: 1rem;
-		transition: all 0.3s;
-		border-radius: 50%;
-		border: 1px solid var(--transparency-t-default, rgba(255, 255, 255, 0.12));
-		&:hover {
-			border: 2px solid var(--transparency-t-darker, rgba(255, 255, 255, 0.40));
-		}
-	}
-}
-
 // Landscape Carousel
 .carousel-1 {
 	.carousel-progress {
@@ -175,12 +152,35 @@
 .carousel-4 {
 	width: 100%;
 	height: auto;
-	.carousel-progress,
-	.carousel-progress-dots {
+	.carousel-slide {
+		padding: 0 0.75rem;
+	}
+	.carousel-progress {
 		display: none;
 	}
-	.carousel-slide-content {
-		width: clamp(20rem, 7.429rem + 62.857vw, 64rem);
-		aspect-ratio: 16/9;
+	.carousel-progress-dots {
+		position: absolute;
+		right: 16px;
+		bottom: 16px;
+		pointer-events: all;
+	}
+	.carousel-slide-content,
+	.carousel-controls {
+		width: clamp(20rem, 7.429rem + 62.857vw, 48rem);
+		aspect-ratio: 3/2;
+	}
+	.carousel-controls {
+		position: absolute;
+		margin: 0;
+		gap: initial;
+		pointer-events: none;
+	}
+	.carousel-buttons {
+		width: calc(100% + 44px);
+		justify-content: space-between;
+		position: absolute;
+	}
+	.btn {
+		pointer-events: all;
 	}
 }

@@ -210,6 +210,16 @@ p {
   letter-spacing: var(--text-3xl--letter-spacing);
   line-height: var(--text-3xl--line-height);
 }
+
+.text-2xl,
+.text-xl,
+.text-lg,
+.text-base,
+.text-sm,
+.text-xs {
+  font-family: var(--font-body);
+}
+
 .text-2xl {
   font-size: var(--text-2xl);
   font-weight: var(--text-2xl--font-weight);

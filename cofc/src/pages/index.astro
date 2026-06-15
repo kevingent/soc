@@ -9,35 +9,363 @@ import Spacer from '../components/Spacer.astro';
 
 <Default title="Playground">
 
-  <Spacer size="x-lg" />
+	<Spacer size="sm" />
 
-  <Carousel variant="4" throwDuration={0.5}>
-    <CarouselSlide src="/images/img.jpg"><span class="text-5xl">01</span></CarouselSlide>
-    <CarouselSlide src="/images/img2.jpg"><span class="text-5xl">02</span></CarouselSlide>
-    <CarouselSlide src="/images/img3.jpg"><span class="text-5xl">03</span></CarouselSlide>
-  </Carousel>
+	<Carousel variant="4" throwDuration={0.5} data-panels="main-carousel">
+		<CarouselSlide src="/images/img.jpg"></CarouselSlide>
+		<CarouselSlide src="/images/img2.jpg"></CarouselSlide>
+		<CarouselSlide src="/images/img3.jpg"></CarouselSlide>
+		<CarouselSlide src="/images/img4.jpg"></CarouselSlide>
+	</Carousel>
 
-  <div class="py-10 text-center">
-    <h3 class="pb-5">Pregnancy &amp; New Baby</h3>
-    <a href="/typography" class="">Welcome a new bundle of joy with joyful gift bundles.</a>
-  </div>
+	<div class="carousel-panels" data-carousel-panels="main-carousel">
+	<div class="group-1">
+		<div class="group-header py-12 text-center">
+			<h3 class="pb-7">Pregnancy &amp; New Baby</h3>
+			<span class="text-base text-zinc-600">Welcome a new bundle of joy with joyful gift bundles.</span>
+		</div>
+		<div class="products-block">
+			<div class="product">
+				<div class="product-image"><img src="/images/img.jpg"></div>
+				<div class="product-meta">
+					<div class="stars py-5 text-amber-400">
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<span class="rating-value text-sm pl-1 text-zinc-700">5.0</span>
+					</div>
+					<div class="title text-base pb-4">Title of Product Here</div>
+					<div class="price text-xl">$99.99</div>
+				</div>
+			</div>
+			<div class="product">
+				<div class="product-image"><img src="/images/img2.jpg"></div>
+				<div class="product-meta">
+					<div class="stars py-5 text-amber-400">
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<span class="rating-value text-sm pl-1 text-zinc-700">5.0</span>
+					</div>
+					<div class="title text-base pb-4">Title of Product Here</div>
+					<div class="price text-xl">$99.99</div>
+				</div>
+			</div>
+			<div class="product">
+				<div class="product-image"><img src="/images/img3.jpg"></div>
+				<div class="product-meta">
+					<div class="stars py-5 text-amber-400">
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<span class="rating-value text-sm pl-1 text-zinc-700">5.0</span>
+					</div>
+					<div class="title text-base pb-4">Title of Product Here</div>
+					<div class="price text-xl">$99.99</div>
+				</div>
+			</div>
+		</div>
+		<div class="cta-block flex align-center justify-center pt-10">
+			<a class="btn btn-ladle">View All Products</a>
+		</div>
+	</div>
 
-  <div class="products-block">
-    <div class="product">
-      <div class="product-image"></div>
-      <div class="product-meta">
-        <div class="stars">
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <span class="rating-value">5.0</span>
-        </div>
-        <div class="title">Title of Product Here</div>
-        <div class="price">$99.99</div>
-      </div>
-    </div>
-  </div>
+	<div class="group-2">
+		<div class="group-header py-12 text-center">
+			<h3 class="pb-7">Group 2</h3>
+			<span class="text-base text-zinc-600">This is the 2nd group.</span>
+		</div>
+		<div class="products-block">
+			<div class="product">
+				<div class="product-image"><img src="/images/img3.jpg"></div>
+				<div class="product-meta">
+					<div class="stars py-5 text-amber-400">
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<span class="rating-value text-sm pl-1 text-zinc-700">5.0</span>
+					</div>
+					<div class="title text-base pb-4">Title of Product Here</div>
+					<div class="price text-xl">$99.99</div>
+				</div>
+			</div>
+			<div class="product">
+				<div class="product-image"><img src="/images/img2.jpg"></div>
+				<div class="product-meta">
+					<div class="stars py-5 text-amber-400">
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<span class="rating-value text-sm pl-1 text-zinc-700">5.0</span>
+					</div>
+					<div class="title text-base pb-4">Title of Product Here</div>
+					<div class="price text-xl">$99.99</div>
+				</div>
+			</div>
+			<div class="product">
+				<div class="product-image"><img src="/images/img.jpg"></div>
+				<div class="product-meta">
+					<div class="stars py-5 text-amber-400">
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<span class="rating-value text-sm pl-1 text-zinc-700">5.0</span>
+					</div>
+					<div class="title text-base pb-4">Title of Product Here</div>
+					<div class="price text-xl">$99.99</div>
+				</div>
+			</div>
+		</div>
+		<div class="cta-block flex align-center justify-center pt-10">
+			<a class="btn btn-ladle">View All Products</a>
+		</div>
+	</div>
+
+	<div class="group-3">
+		<div class="group-header py-12 text-center">
+			<h3 class="pb-7">Group 3</h3>
+			<span class="text-base text-zinc-600">This is the 3rd group.</span>
+		</div>
+		<div class="products-block">
+			<div class="product">
+				<div class="product-image"><img src="/images/img.jpg"></div>
+				<div class="product-meta">
+					<div class="stars py-5 text-amber-400">
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<span class="rating-value text-sm pl-1 text-zinc-700">5.0</span>
+					</div>
+					<div class="title text-base pb-4">Title of Product Here</div>
+					<div class="price text-xl">$99.99</div>
+				</div>
+			</div>
+			<div class="product">
+				<div class="product-image"><img src="/images/img2.jpg"></div>
+				<div class="product-meta">
+					<div class="stars py-5 text-amber-400">
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<span class="rating-value text-sm pl-1 text-zinc-700">5.0</span>
+					</div>
+					<div class="title text-base pb-4">Title of Product Here</div>
+					<div class="price text-xl">$99.99</div>
+				</div>
+			</div>
+			<div class="product">
+				<div class="product-image"><img src="/images/img3.jpg"></div>
+				<div class="product-meta">
+					<div class="stars py-5 text-amber-400">
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<span class="rating-value text-sm pl-1 text-zinc-700">5.0</span>
+					</div>
+					<div class="title text-base pb-4">Title of Product Here</div>
+					<div class="price text-xl">$99.99</div>
+				</div>
+			</div>
+		</div>
+		<div class="cta-block flex align-center justify-center pt-10">
+			<a class="btn btn-ladle">View All Products</a>
+		</div>
+	</div>
+
+	<div class="group-4">
+		<div class="group-header py-12 text-center">
+			<h3 class="pb-7">Group 4</h3>
+			<span class="text-base text-zinc-600">This is the 4th group.</span>
+		</div>
+		<div class="products-block">
+			<div class="product">
+				<div class="product-image"><img src="/images/img3.jpg"></div>
+				<div class="product-meta">
+					<div class="stars py-5 text-amber-400">
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<span class="rating-value text-sm pl-1 text-zinc-700">5.0</span>
+					</div>
+					<div class="title text-base pb-4">Title of Product Here</div>
+					<div class="price text-xl">$99.99</div>
+				</div>
+			</div>
+			<div class="product">
+				<div class="product-image"><img src="/images/img2.jpg"></div>
+				<div class="product-meta">
+					<div class="stars py-5 text-amber-400">
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<span class="rating-value text-sm pl-1 text-zinc-700">5.0</span>
+					</div>
+					<div class="title text-base pb-4">Title of Product Here</div>
+					<div class="price text-xl">$99.99</div>
+				</div>
+			</div>
+			<div class="product">
+				<div class="product-image"><img src="/images/img.jpg"></div>
+				<div class="product-meta">
+					<div class="stars py-5 text-amber-400">
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<span class="rating-value text-sm pl-1 text-zinc-700">5.0</span>
+					</div>
+					<div class="title text-base pb-4">Title of Product Here</div>
+					<div class="price text-xl">$99.99</div>
+				</div>
+			</div>
+		</div>
+		<div class="cta-block flex align-center justify-center pt-10">
+			<a class="btn btn-ladle">View All Products</a>
+		</div>
+	</div>
+	</div>
+
+	<Spacer size="x-lg" />
+
+	<style>
+		/* Grid stacking — all groups live in the same cell so the container
+		   always has the height of the tallest group. No layout shift. */
+		.carousel-panels {
+			display: grid;
+		}
+		.group-1,
+		.group-2,
+		.group-3,
+		.group-4 {
+			grid-area: 1 / 1; /* all groups share the same grid cell */
+			opacity: 0;
+			visibility: hidden;
+		}
+		.products-block {
+			max-width: 1536px;
+			margin: 0 auto;
+			padding: 0 clamp(1rem, calc(0.625rem + 1.563vw), 2.5rem);
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 3.5rem clamp(1rem, calc(0.625rem + 1.563vw), 1.5rem);
+		}
+		.product {
+			.product-image {
+				aspect-ratio: 1 / 1;
+				max-width: 588px;
+				img {
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+					display: block;
+				}
+			}
+			.product-meta {
+				.stars {
+					display: flex;
+					align-items: center;
+					justify-content: flex-start;
+					i { font-size: 13px; }
+				}
+			}
+		}
+
+		@media (max-width: 767px) {
+			.products-block {
+				grid-template-columns: repeat(2, 1fr);
+			}
+		}
+	</style>
+
+	<script>
+		import { gsap } from 'gsap';
+
+		const panelWrap = document.querySelector('[data-carousel-panels]');
+		if (panelWrap) {
+			let activeGroup = null;
+
+			/** Stagger outgoing header + cards upward, then hide the group */
+			function hideGroup(el) {
+				const header = el.querySelector('.group-header');
+				const cards = [...el.querySelectorAll('.product')];
+				const items = header ? [header, ...cards] : cards;
+				const tl = gsap.timeline({
+					onComplete() {
+						gsap.set(el, { autoAlpha: 0 });
+						gsap.set(items, { clearProps: 'transform,opacity,visibility' });
+					},
+				});
+				tl.to(items, {
+					autoAlpha: 0,
+					y: -16,
+					duration: 0.16,
+					ease: 'power2.in',
+					stagger: { each: 0.05, from: 'start' },
+				});
+			}
+
+			/** Stagger incoming header then cards in from below, top-to-bottom */
+			function showGroup(el) {
+				const header = el.querySelector('.text-center');
+				const cards = [...el.querySelectorAll('.product')];
+				const items = header ? [header, ...cards] : cards;
+				gsap.set(el, { autoAlpha: 1 });
+				gsap.fromTo(items,
+					{ autoAlpha: 0, y: 32 },
+					{
+						autoAlpha: 1,
+						y: 0,
+						duration: 0.45,
+						ease: 'power3.out',
+						stagger: { each: 0.07, from: 'start' },
+					}
+				);
+			}
+
+			/** Swap to the group matching the 1-based slideNumber */
+			function switchToGroup(slideNumber) {
+				const next = panelWrap.querySelector(`.group-${slideNumber}`);
+				if (!next || next === activeGroup) return;
+				if (activeGroup) hideGroup(activeGroup);
+				showGroup(next);
+				activeGroup = next;
+			}
+
+			// Listen on document — avoids any event-bubbling or script-order issues
+			document.addEventListener('carousel:change', (e) => {
+				switchToGroup(e.detail.slideNumber);
+			});
+
+			// Show group-1 immediately on load (no animation)
+			const firstGroup = panelWrap.querySelector('.group-1');
+			if (firstGroup) {
+				gsap.set(firstGroup, { autoAlpha: 1, y: 0 });
+				activeGroup = firstGroup;
+			}
+		}
+	</script>
 
 </Default>
