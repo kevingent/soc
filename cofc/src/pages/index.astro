@@ -3,14 +3,23 @@
 import Default from '../layouts/Default.astro';
 import Carousel from '../components/Carousel.astro';
 import CarouselSlide from '../components/CarouselSlide.astro';
+import Spacer from '../components/Spacer.astro';
 
 ---
 
 <Default title="Playground">
 
-  <div class="slider-headline">
-    <h1 class="">Heading 1</h1>
-    <a href="/typography" class="">Typography</a>
+  <Spacer size="x-lg" />
+
+  <Carousel variant="4" throwDuration={0.5}>
+    <CarouselSlide src="/images/img.jpg"><span class="text-5xl">01</span></CarouselSlide>
+    <CarouselSlide src="/images/img2.jpg"><span class="text-5xl">02</span></CarouselSlide>
+    <CarouselSlide src="/images/img3.jpg"><span class="text-5xl">03</span></CarouselSlide>
+  </Carousel>
+
+  <div class="py-10 text-center">
+    <h3 class="pb-5">Pregnancy &amp; New Baby</h3>
+    <a href="/typography" class="">Welcome a new bundle of joy with joyful gift bundles.</a>
   </div>
 
   <div class="products-block">
@@ -30,26 +39,5 @@ import CarouselSlide from '../components/CarouselSlide.astro';
       </div>
     </div>
   </div>
-
-  <Carousel variant="3" class="bg-neutral-950" throwDuration={2} data-mode="dark">
-    <CarouselSlide src="/images/img.jpg"><span class="text-5xl">01</span></CarouselSlide>
-    <CarouselSlide src="/images/img.jpg"><span class="text-5xl">02</span></CarouselSlide>
-    <CarouselSlide src="/images/img.jpg"><span class="text-5xl">03</span></CarouselSlide>
-    <CarouselSlide src="/images/img.jpg"><span class="text-5xl">04</span></CarouselSlide>
-  </Carousel>
-
-  <Carousel variant="2" navDuration={0.2} dragSpeed={1.4} throwDuration={1} class="bg-amber-500" data-mode="dark">
-    <CarouselSlide src="/images/img.jpg"><span class="text-5xl">01</span></CarouselSlide>
-    <CarouselSlide src="/images/img.jpg"><span class="text-5xl">02</span></CarouselSlide>
-    <CarouselSlide src="/images/img.jpg"><span class="text-5xl">03</span></CarouselSlide>
-    <CarouselSlide src="/images/img.jpg"><span class="text-5xl">04</span></CarouselSlide>
-  </Carousel>
-
-  <Carousel variant="1" throwDuration={0.5}>
-    <CarouselSlide src="/images/img.jpg"><span class="text-5xl">01</span></CarouselSlide>
-    <CarouselSlide src="/images/img.jpg"><span class="text-5xl">02</span></CarouselSlide>
-    <CarouselSlide src="/images/img.jpg"><span class="text-5xl">03</span></CarouselSlide>
-    <CarouselSlide src="/images/img.jpg"><span class="text-5xl">04</span></CarouselSlide>
-  </Carousel>
 
 </Default>

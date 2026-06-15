@@ -1,0 +1,33 @@
+---
+
+import Default from '../layouts/Default.astro';
+import Carousel from '../components/Carousel.astro';
+import CarouselSlide from '../components/CarouselSlide.astro';
+
+---
+
+<Default title="Playground">
+
+  <Carousel variant="3" class="bg-neutral-950" throwDuration={2} data-mode="dark">
+    <CarouselSlide src="/images/img.jpg"><span class="text-5xl">01</span></CarouselSlide>
+    <CarouselSlide src="/images/img2.jpg"><span class="text-5xl">02</span></CarouselSlide>
+    <CarouselSlide src="/images/img3.jpg"><span class="text-5xl">03</span></CarouselSlide>
+    <CarouselSlide src="/images/img4.jpg"><span class="text-5xl">04</span></CarouselSlide>
+    <CarouselSlide src="/images/img5.jpg"><span class="text-5xl">05</span></CarouselSlide>
+  </Carousel>
+
+  <Carousel variant="2" navDuration={0.2} dragSpeed={1.4} throwDuration={1} class="bg-amber-500" data-mode="dark">
+    <CarouselSlide src="/images/img.jpg"><span class="text-5xl">01</span></CarouselSlide>
+    <CarouselSlide src="/images/img2.jpg"><span class="text-5xl">02</span></CarouselSlide>
+    <CarouselSlide src="/images/img3.jpg"><span class="text-5xl">03</span></CarouselSlide>
+    <CarouselSlide src="/images/img4.jpg"><span class="text-5xl">04</span></CarouselSlide>
+    <CarouselSlide src="/images/img5.jpg"><span class="text-5xl">05</span></CarouselSlide>
+  </Carousel>
+
+  <Carousel variant="1" throwDuration={0.5}>
+    <CarouselSlide src="/images/img.jpg"><span class="text-5xl">01</span></CarouselSlide>
+    <CarouselSlide src="/images/img2.jpg"><span class="text-5xl">02</span></CarouselSlide>
+    <CarouselSlide src="/images/img3.jpg"><span class="text-5xl">03</span></CarouselSlide>
+  </Carousel>
+
+</Default>

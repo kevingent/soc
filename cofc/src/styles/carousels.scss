@@ -170,3 +170,17 @@
 		top: 0;
 	}
 }
+
+// Landscape Carousel
+.carousel-4 {
+	width: 100%;
+	height: auto;
+	.carousel-progress,
+	.carousel-progress-dots {
+		display: none;
+	}
+	.carousel-slide-content {
+		width: clamp(20rem, 7.429rem + 62.857vw, 64rem);
+		aspect-ratio: 16/9;
+	}
+}
