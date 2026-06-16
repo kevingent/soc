@@ -1,0 +1,109 @@
+---
+
+interface Props {
+	/**
+	 * Binds this panel set to a specific carousel instance.
+	 * Must match the `data-panels` value on the corresponding <Carousel> component.
+	 * e.g. for="main-carousel" pairs with <Carousel data-panels="main-carousel">
+	 */
+	for: string;
+	class?: string;
+}
+
+const { for: carouselId, class: className } = Astro.props;
+
+---
+
+<div class:list={["carousel-panels", className]} data-carousel-panels={carouselId}>
+	<slot />
+</div>
+
+<style>
+	/* All child groups share the same grid cell so the container height
+	   is always that of the tallest group — no layout shift on transition. */
+	.carousel-panels {
+		display: grid;
+	}
+</style>
+
+<script>
+	import { gsap } from 'gsap';
+
+	// Support multiple CarouselPanels instances on the same page
+	document.querySelectorAll<HTMLElement>('[data-carousel-panels]').forEach((panelWrap) => {
+		const carouselId = panelWrap.dataset.carouselPanels;
+		let activeGroup: HTMLElement | null = null;
+
+		/** Stagger outgoing header + cards upward, then fully hide the group */
+		function hideGroup(el: HTMLElement) {
+			const header = el.querySelector<HTMLElement>('.group-header');
+			const cards  = [...el.querySelectorAll<HTMLElement>('.product')];
+			const items  = header ? [header, ...cards] : cards;
+
+			const tl = gsap.timeline({
+				onComplete() {
+					gsap.set(el, { autoAlpha: 0 });
+					gsap.set(items, { clearProps: 'transform,opacity,visibility' });
+				},
+			});
+
+			tl.to(items, {
+				autoAlpha: 0,
+				y: 8,
+				duration: 0.24,
+				ease: 'power2.in',
+				stagger: { each: 0.05, from: 'start' },
+			});
+		}
+
+		/** Stagger incoming header then cards in from below */
+		function showGroup(el: HTMLElement) {
+			const header = el.querySelector<HTMLElement>('.group-header');
+			const cards  = [...el.querySelectorAll<HTMLElement>('.product')];
+			const items  = header ? [header, ...cards] : cards;
+
+			gsap.set(el, { autoAlpha: 1 });
+			gsap.fromTo(
+				items,
+				{ autoAlpha: 0, y: 32 },
+				{
+					autoAlpha: 1,
+					y: 0,
+					duration: 0.64,
+					ease: 'power2.out',
+					stagger: { each: 0.07, from: 'start' },
+				}
+			);
+		}
+
+		/** Swap to the group matching the 1-based slideNumber */
+		function switchToGroup(slideNumber: number) {
+			const next = panelWrap.querySelector<HTMLElement>(`.group-${slideNumber}`);
+			if (!next || next === activeGroup) return;
+			if (activeGroup) hideGroup(activeGroup);
+			showGroup(next);
+			activeGroup = next;
+		}
+
+		// Listen for carousel:change events scoped to this carousel ID
+		document.addEventListener('carousel:change', (e: Event) => {
+			const detail = (e as CustomEvent).detail;
+			// Only respond if the event is from our paired carousel (or if untagged)
+			if (detail.carouselId && detail.carouselId !== carouselId) return;
+			switchToGroup(detail.slideNumber);
+		});
+
+		// Reveal group-1 immediately on load with no animation.
+		// Explicitly set both the container AND its inner items so the visible
+		// state is guaranteed regardless of any prior GSAP or CSS state.
+		const firstGroup = panelWrap.querySelector<HTMLElement>('.group-1');
+		if (firstGroup) {
+			const header = firstGroup.querySelector<HTMLElement>('.group-header');
+			const cards  = [...firstGroup.querySelectorAll<HTMLElement>('.product')];
+			const items  = header ? [header, ...cards] : cards;
+			gsap.set(firstGroup, { autoAlpha: 1 });
+			gsap.set(items, { autoAlpha: 1, y: 0 });
+			activeGroup = firstGroup;
+		}
+	});
+</script>

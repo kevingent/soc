@@ -25,10 +25,13 @@ document.querySelectorAll('.carousel-contain').forEach((container) => {
 	const navVars     = { duration: navDuration, ease: navEase }; // shared — reused for all nav animations
 
 	// Tracks the latest active index so we can dispatch at the right settled moment
+	// Read the carousel's ID from the data-panels attribute on the <section> wrapper
+	const carouselId = container.closest('[data-panels]')?.dataset.panels ?? null;
+
 	let pendingIndex = startIndex;
 	function dispatchSettled() {
 		container.dispatchEvent(new CustomEvent('carousel:change', {
-			detail: { index: pendingIndex, slideNumber: pendingIndex + 1 },
+			detail: { index: pendingIndex, slideNumber: pendingIndex + 1, carouselId },
 			bubbles: true,
 		}));
 	}

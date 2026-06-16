@@ -1,0 +1,60 @@
+---
+
+interface Props {
+	/**
+	 * 1-based index that maps this group to a carousel slide.
+	 * Generates class="group-{index}" which the CarouselPanels script targets.
+	 */
+	index: number;
+	title: string;
+	description?: string;
+	ctaLabel?: string;
+	ctaHref?: string;
+}
+
+const {
+	index,
+	title,
+	description,
+	ctaLabel = "View All Products",
+	ctaHref = "#",
+} = Astro.props;
+
+---
+
+<div class={`group-${index}`}>
+	<div class="group-header p-14 text-center">
+		<h3 class="pb-7">{title}</h3>
+		{description && <span class="text-base text-zinc-600">{description}</span>}
+	</div>
+	<div class="products-block">
+		<slot />
+	</div>
+	<div class="cta-block flex align-center justify-center pt-10">
+		<a class="btn btn-ladle" href={ctaHref}>{ctaLabel}</a>
+	</div>
+</div>
+
+<style>
+	/* Each group is hidden by default; CarouselPanels will reveal the active one */
+	[class^="group-"] {
+		grid-area: 1 / 1; /* stacked in same cell via parent grid */
+		opacity: 0;
+		visibility: hidden;
+	}
+
+	.products-block {
+		max-width: 1536px;
+		margin: 0 auto;
+		padding: 0 clamp(1rem, calc(0.625rem + 1.563vw), 2.5rem);
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 3.5rem clamp(1rem, calc(0.625rem + 1.563vw), 1.5rem);
+	}
+
+	@media (max-width: 767px) {
+		.products-block {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+</style>

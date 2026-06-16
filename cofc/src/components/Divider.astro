@@ -1,0 +1,29 @@
+---
+
+interface Props {
+	/** Tailwind/utility class(es) to add to the outer wrapper */
+	class?: string;
+}
+
+const { class: className } = Astro.props;
+
+---
+
+<div class:list={["divider-block px-10 flex items-center justify-center gap-6", className]}>
+	<div class="divider w-full h-[1px] bg-neutral-200"></div>
+	<div class="divider-icon shrink-0 w-[35px]">
+		<svg xmlns="http://www.w3.org/2000/svg" width="35" height="12" viewBox="0 0 35 12" fill="none">
+			<path d="M2.34677 9.46152C9.5959 16.3177 21.9254 -4.94203 32.0997 1.0917C37.4144 4.24334 35.0381 13.1522 28.117 11.8252C27.7622 11.7561 25.6738 10.5604 25.627 10.4153C25.0313 8.52846 27.9162 10.8715 28.5789 11.0166C35.5201 12.5855 36.1292 1.33361 29.0006 1.27831C23.9804 1.23684 15.6268 11.0373 9.40178 11.8598C-5.43787 13.8365 -0.651977 -5.87508 9.59588 2.12843C7.95595 2.63297 7.40039 0.939651 5.27184 0.939651C0.840695 0.939651 -0.544863 6.73148 2.34007 9.46152H2.34677Z" fill="#0A0A0A" fill-opacity="0.4"/>
+		</svg>
+	</div>
+	<div class="divider w-full h-[1px] bg-neutral-200"></div>
+</div>
+
+<style>
+	/* Icon centering only — all other styles handled by Tailwind utilities */
+	.divider-icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+</style>
