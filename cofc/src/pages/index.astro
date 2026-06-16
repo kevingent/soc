@@ -27,12 +27,16 @@ import CarouselPanels from '../components/CarouselPanels.astro';
 
 	<Spacer size="lg" />
 
-	<Carousel variant="4" throwDuration={0.5} data-panels="main-carousel">
-		<CarouselSlide src="/images/img.jpg"></CarouselSlide>
-		<CarouselSlide src="/images/img2.jpg"></CarouselSlide>
-		<CarouselSlide src="/images/img3.jpg"></CarouselSlide>
-		<CarouselSlide src="/images/img4.jpg"></CarouselSlide>
-	</Carousel>
+	<div data-animate="fade-up" data-animate-scrub>
+
+		<Carousel variant="4" throwDuration={0.5} data-panels="main-carousel">
+			<CarouselSlide src="/images/img.jpg"></CarouselSlide>
+			<CarouselSlide src="/images/img2.jpg"></CarouselSlide>
+			<CarouselSlide src="/images/img3.jpg"></CarouselSlide>
+			<CarouselSlide src="/images/img4.jpg"></CarouselSlide>
+		</Carousel>
+
+	</div>
 
 	<CarouselPanels for="main-carousel">
 
@@ -62,6 +66,14 @@ import CarouselPanels from '../components/CarouselPanels.astro';
 
 	</CarouselPanels>
 
-	<Spacer size="x-lg" />
+	<Spacer size="lg" />
+
+	<Divider />
+
+	<Spacer size="lg" />
+
+	<div data-animate="fade-up" data-animate-scrub class="w-full h-[560px] flex items-center justify-center bg-neutral-100">
+		<span class="text-sm text-neutral-500">Footer Block</span>
+	</div>
 
 </Default>

@@ -23,11 +23,13 @@ const {
 ---
 
 <div class={`group-${index}`}>
-	<div class="group-header p-14 text-center">
-		<h3 class="pb-7">{title}</h3>
-		{description && <span class="text-base text-zinc-600">{description}</span>}
+	<div data-animate="fade-up" data-animate-scrub>
+		<div class="group-header p-14 text-center">
+			<h3 class="pb-7">{title}</h3>
+			{description && <span class="text-base text-zinc-600">{description}</span>}
+		</div>
 	</div>
-	<div class="products-block">
+	<div data-animate="fade-up" data-animate-scrub class="products-block">
 		<slot />
 	</div>
 	<div class="cta-block flex align-center justify-center pt-10">
