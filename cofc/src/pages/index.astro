@@ -14,11 +14,11 @@ import CarouselPanels from '../components/CarouselPanels.astro';
 <Default title="Playground">
 
 	<div class="w-full h-26 flex items-center justify-center bg-neutral-200">
-		<span class="text-sm text-neutral-500">Navigation</span>
+		<span class="text-sm text-neutral-500">(Navigation)</span>
 	</div>
 
 	<div class="w-full h-[560px] flex items-center justify-center bg-neutral-100">
-		<span class="text-sm text-neutral-500">Hero</span>
+		<span class="text-sm text-center text-neutral-500">(Hero) <br /> - Scroll down to view the prototype -</span>
 	</div>
 
 	<Spacer size="lg" />
@@ -27,7 +27,7 @@ import CarouselPanels from '../components/CarouselPanels.astro';
 
 	<Spacer size="lg" />
 
-	<div data-animate="fade-up" data-animate-scrub>
+	<div data-animate="fade-up">
 
 		<Carousel variant="4" throwDuration={0.5} data-panels="main-carousel">
 			<CarouselSlide src="/images/img.jpg"></CarouselSlide>
@@ -73,7 +73,7 @@ import CarouselPanels from '../components/CarouselPanels.astro';
 	<Spacer size="lg" />
 
 	<div data-animate="fade-up" data-animate-scrub class="w-full h-[560px] flex items-center justify-center bg-neutral-100">
-		<span class="text-sm text-neutral-500">Footer Block</span>
+		<span class="text-sm text-neutral-500">(Footer)</span>
 	</div>
 
 </Default>

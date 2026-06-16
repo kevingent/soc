@@ -22,12 +22,13 @@ const {
 } = Astro.props;
 
 const clampedStars = Math.min(5, Math.max(0, stars));
+const resolvedSrc = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/${src.replace(/^\//, '')}`;
 
 ---
 
 <div class="product">
 	<a class="product-image" href={href}>
-		<img src={src} alt={title} loading="lazy" />
+		<img src={resolvedSrc} alt={title} loading="lazy" />
 	</a>
 	<div class="product-meta">
 		<div class="stars py-5 text-amber-400">
