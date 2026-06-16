@@ -194,3 +194,16 @@
 		pointer-events: all;
 	}
 }
+
+@media (max-width: 560px) {
+	.carousel-4 {
+		.carousel-slide-content,
+		.carousel-controls {
+			aspect-ratio: 4/3;
+		}
+		.carousel-buttons {
+			width: 100%;
+			padding: 0 0.75rem;
+		}
+	}
+}
